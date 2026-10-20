@@ -170,78 +170,222 @@ footer {
   display: none;
 }
 
-.jumpscare h2 {
-  color: #ff343b;
-  text-align: center;
-  padding: 0 15px;
-  text-shadow: 0 0 12px red;
-}
+
+/* ===== THE MONSTER ===== */
 
 .face {
   position: relative;
-  width: min(390px, 80vw);
-  height: min(330px, 66vw);
-  min-height: 230px;
-  background: radial-gradient(ellipse, #333, #050505 70%);
+  flex-shrink: 0;
+  width: min(440px, 88vw);
+  height: min(390px, 76vw);
+  min-height: 280px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 40%,
+      #35302f 0%,
+      #141111 42%,
+      #030303 75%
+    );
+
   clip-path: polygon(
-    15% 0, 85% 0, 100% 45%,
-    82% 100%, 18% 100%, 0 45%
+    20% 0%, 80% 0%,
+    100% 24%, 92% 70%,
+    72% 100%, 28% 100%,
+    8% 70%, 0% 24%
   );
-  animation: shake 0.07s infinite;
+
+  filter: drop-shadow(0 0 22px #ff0000);
+  animation: lunge 0.16s steps(2) infinite;
 }
+
+/* Horizontal interference across the face */
+.face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 5px,
+    #0009 6px 8px
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* ===== THE EYES ===== */
 
 .eye {
   position: absolute;
   top: 30%;
-  width: 22%;
-  height: 13%;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 22px red;
+  width: 25%;
+  height: 11%;
+  background: #f7f4ed;
+  border-radius: 50% 50% 10% 10%;
+
+  box-shadow:
+    0 0 12px #fff,
+    0 0 35px #ff0000;
+
+  animation: eyeFlicker 0.13s steps(2) infinite;
 }
 
 .left {
-  left: 19%;
-  transform: rotate(12deg);
+  left: 14%;
+  transform: rotate(16deg);
 }
 
 .right {
-  right: 19%;
-  transform: rotate(-12deg);
+  right: 14%;
+  transform: rotate(-16deg);
 }
+
+/* ===== THE MOUTH ===== */
 
 .mouth {
   position: absolute;
-  left: 31%;
-  top: 57%;
-  width: 38%;
-  height: 28%;
-  background: black;
-  border: 5px solid #6c1717;
-  border-radius: 45% 45% 50% 50%;
+  left: 26%;
+  top: 53%;
+  width: 48%;
+  height: 34%;
+
+  background: repeating-linear-gradient(
+    90deg,
+    #ddd 0px,
+    #ddd 7px,
+    #090000 7px,
+    #090000 12px
+  );
+
+  border: 7px solid #210303;
+  border-radius: 48% 48% 35% 35%;
+
+  box-shadow:
+    inset 0 0 20px #000,
+    0 0 25px #a00000;
+
+  animation: mouthWarp 0.2s steps(2) infinite;
 }
 
-@keyframes noise {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-4%, 2%); }
-  50% { transform: translate(3%, -3%); }
-  75% { transform: translate(1%, 4%); }
-  100% { transform: translate(-2%, -1%); }
+/* ===== JUMPSCARE ANIMATIONS ===== */
+
+@keyframes lunge {
+  0% {
+    transform: scale(0.65) translateY(30px);
+  }
+
+  45% {
+    transform: scale(1.22) translateX(-8px);
+  }
+
+  100% {
+    transform: scale(1.08) translateX(5px);
+  }
 }
 
-@keyframes flicker {
-  0%, 93%, 96%, 100% { opacity: 1; }
-  94%, 95% { opacity: 0.15; }
+@keyframes eyeFlicker {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
 }
 
-@keyframes shake {
-  0% { transform: translate(2px, -1px) rotate(-1deg); }
-  50% { transform: translate(-2px, 2px) rotate(1deg); }
-  100% { transform: translate(1px, 1px); }
+@keyframes mouthWarp {
+  0% {
+    transform: scaleY(0.75);
+  }
+
+  100% {
+    transform: scaleY(1.15);
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .noise, #message, .face {
-    animation: none;
+/* The whole screen tears apart */
+.jumpscare::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 3px,
+      #fff2 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #ff000014 0px,
+      transparent 4px,
+      #fff1 8px
+    );
+
+  animation: signalTear 0.09s steps(2) infinite;
+}
+
+@keyframes signalTear {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-12px, 3px);
+  }
+
+  50% {
+    transform: translate(9px, -5px);
+  }
+
+  75% {
+    transform: translate(-4px, 8px);
+  }
+
+  100% {
+    transform: translate(7px, 0);
+  }
+}
+
+@keyframes screenDeath {
+  0% {
+    filter: brightness(5);
+  }
+
+  25% {
+    filter: brightness(0.1);
+  }
+
+  50% {
+    filter: brightness(3) contrast(2);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes textCorrupt {
+  0% {
+    transform: translateX(-3px);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+}
+
+
+ 
+
   }
 }
