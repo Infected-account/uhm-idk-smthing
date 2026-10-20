@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STATIC SIGNAL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="terminal">
+    <p class="eyebrow">EMERGENCY BROADCAST NETWORK // CHANNEL 09</p>
+
+    <h1>STATIC<span>SIGNAL</span></h1>
+
+    <p class="warning">
+      SIGNAL INTEGRITY: <strong id="integrity">UNKNOWN</strong>
+    </p>
+
+    <div class="screen">
+      <div class="noise"></div>
+      <div class="screen-content">
+        <p>03:17:??</p>
+        <h2 id="message">NO CARRIER</h2>
+        <p class="tiny">IF YOU CAN READ THIS, THE SIGNAL CAN READ YOU.</p>
+      </div>
+    </div>
+
+    <p class="intro">
+      Something is broadcasting from an abandoned frequency.
+      Keep listening if you want. Just don't answer it.
+    </p>
+
+    <div class="controls">
+      <button id="audioBtn">▶ ENABLE STATIC AUDIO</button>
+      <button id="signalBtn">TUNE INTO SIGNAL</button>
+    </div>
+
+    <p id="status">AUDIO OFF // SIGNAL UNSTABLE</p>
+
+    <div class="log">
+      <p>&gt; LOG 09-A: Carrier detected at 03:17.</p>
+      <p>&gt; LOG 09-B: No station ID found.</p>
+      <p>&gt; LOG 09-C: Operator heard a voice.</p>
+      <p class="redacted">&gt; LOG 09-D: [FILE CORRUPTED]</p>
+    </div>
+
+    <footer>
+      PROPERTY OF NOBODY // DO NOT TRANSMIT
+    </footer>
+  </main>
+
+  <div id="jumpscare" class="jumpscare" hidden>
+    <div class="face">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="mouth"></div>
+    </div>
+
+    <h2>YOU SHOULDN'T HAVE ANSWERED.</h2>
+    <button id="returnBtn">RETURN TO SIGNAL</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
