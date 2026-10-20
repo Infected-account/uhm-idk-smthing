@@ -45,6 +45,44 @@
       <p>&gt; LOG 09-B: No station ID found.</p>
       <p>&gt; LOG 09-C: Operator heard a voice.</p>
       <p class="redacted">&gt; LOG 09-D: [FILE CORRUPTED]</p>
+      
+<section class="terminal-access">
+  <h2>REMOTE TERMINAL</h2>
+  <p>AUTHORIZATION REQUIRED</p>
+
+  <div class="terminal-output" id="terminalOutput">
+    SIGNAL LOST...
+    <br>
+    ENTER ACCESS CODE TO CONTINUE.
+  </div>
+
+  <form id="codeForm">
+    <span>&gt;</span>
+    <input
+      id="codeInput"
+      type="text"
+      placeholder="ENTER CODE..."
+      autocomplete="off"
+      maxlength="30"
+      aria-label="Terminal access code"
+    >
+    <button type="submit">EXECUTE</button>
+  </form>
+
+  <p id="codeStatus">AWAITING INPUT...</p>
+
+  <div id="classified" hidden>
+    <h3>FILE UNLOCKED: 09-D</h3>
+    <p>SUBJECT: THE BROADCASTER</p>
+    <p>STATUS: NOT CONTAINED</p>
+    <p>
+      Last transmission received at 03:17.
+      The operator reported a second voice on the line.
+      The recording contains only one speaker.
+    </p>
+    <p class="redacted">THE SECOND VOICE IS STILL TRANSMITTING.</p>
+  </div>
+</section>
     </div>
 
     <footer>
