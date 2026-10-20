@@ -3,104 +3,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STATIC SIGNAL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STATIC SIGNAL // 03:17</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="scanlines"></div>
+  <header class="topbar">
+    <div class="brand">S̷T̷A̷T̷I̷C̷ ̷S̷I̷G̷N̷A̷L̷</div>
+    <div id="connection">SIGNAL: UNSTABLE</div>
+  </header>
 
-  <main class="terminal">
-    <p class="eyebrow">EMERGENCY BROADCAST NETWORK // CHANNEL 09</p>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">ARCHIVE 0317 // RECOVERED FOOTAGE</p>
+      <h1>THE ROOM</h1>
+      <p>Use your flashlight. Inspect the image. Report anything unusual.</p>
+      <p class="warning">DO NOT TRUST THE RECORDING.</p>
+    </section>
 
-    <h1>STATIC<span>SIGNAL</span></h1>
+    <section class="scene" id="scene" aria-label="Explore the dark room with your flashlight">
+      <div class="room"></div>
 
-    <p class="warning">
-      SIGNAL INTEGRITY: <strong id="integrity">UNKNOWN</strong>
-    </p>
+      <!-- The entity exists only inside the flashlight mask. -->
+      <img
+        src="entity.png"
+        class="entity"
+        id="entity"
+        alt=""
+        draggable="false"
+      >
 
-    <div class="screen">
-      <div class="noise"></div>
-      <div class="screen-content">
-        <p>03:17:??</p>
-        <h2 id="message">NO CARRIER</h2>
-        <p class="tiny">IF YOU CAN READ THIS, THE SIGNAL CAN READ YOU.</p>
+      <div class="darkness"></div>
+      <div class="flashlight" id="flashlight"></div>
+      <div class="grain"></div>
+      <div class="scanlines"></div>
+
+      <div class="scene-label" id="sceneLabel">
+        CAMERA 04 // NO MOVEMENT DETECTED
       </div>
-    </div>
 
-    <p class="intro">
-      Something is broadcasting from an abandoned frequency.
-      Keep listening if you want. Just don't answer it.
-    </p>
+      <div class="scene-hint" id="sceneHint">
+        MOVE YOUR FLASHLIGHT TO INVESTIGATE
+      </div>
+    </section>
 
-    <div class="controls">
-      <button id="audioBtn">▶ ENABLE STATIC AUDIO</button>
-      <button id="signalBtn">TUNE INTO SIGNAL</button>
-    </div>
+    <section class="controls">
+      <button id="lightButton">FLASHLIGHT: ON</button>
+      <button id="staticButton">STATIC AUDIO: OFF</button>
+      <button id="terminalButton">OPEN TERMINAL</button>
+    </section>
 
-    <p id="status">AUDIO OFF // SIGNAL UNSTABLE</p>
+    <section class="terminal" id="terminal" hidden>
+      <div class="terminal-header">
+        <span>REMOTE TERMINAL // RESTRICTED</span>
+        <button id="closeTerminal" aria-label="Close terminal">[ X ]</button>
+      </div>
 
-    <div class="log">
-      <p>&gt; LOG 09-A: Carrier detected at 03:17.</p>
-      <p>&gt; LOG 09-B: No station ID found.</p>
-      <p>&gt; LOG 09-C: Operator heard a voice.</p>
-      <p class="redacted">&gt; LOG 09-D: [FILE CORRUPTED]</p>
-      
-<section class="terminal-access">
-  <h2>REMOTE TERMINAL</h2>
-  <p>AUTHORIZATION REQUIRED</p>
+      <div class="terminal-output" id="output">
+        <p>STATIC SIGNAL REMOTE CONSOLE v0.4</p>
+        <p>CONNECTION ESTABLISHED.</p>
+        <p>TYPE <b>help</b> FOR COMMANDS.</p>
+      </div>
 
-  <div class="terminal-output" id="terminalOutput">
-    SIGNAL LOST...
-    <br>
-    ENTER ACCESS CODE TO CONTINUE.
-  </div>
+      <form id="terminalForm">
+        <label for="command">visitor@signal:~$</label>
+        <input id="command" autocomplete="off" spellcheck="false"
+               aria-label="Terminal command">
+      </form>
+    </section>
 
-  <form id="codeForm">
-    <span>&gt;</span>
-    <input
-      id="codeInput"
-      type="text"
-      placeholder="ENTER CODE..."
-      autocomplete="off"
-      maxlength="30"
-      aria-label="Terminal access code"
-    >
-    <button type="submit">EXECUTE</button>
-  </form>
-
-  <p id="codeStatus">AWAITING INPUT...</p>
-
-  <div id="classified" hidden>
-    <h3>FILE UNLOCKED: 09-D</h3>
-    <p>SUBJECT: THE BROADCASTER</p>
-    <p>STATUS: NOT CONTAINED</p>
-    <p>
-      Last transmission received at 03:17.
-      The operator reported a second voice on the line.
-      The recording contains only one speaker.
-    </p>
-    <p class="redacted">THE SECOND VOICE IS STILL TRANSMITTING.</p>
-  </div>
-</section>
-    </div>
-
-    <footer>
-      PROPERTY OF NOBODY // DO NOT TRANSMIT
-    </footer>
+    <section class="status-panel">
+      <p>ARCHIVE STATUS: <span id="archiveStatus">INCOMPLETE</span></p>
+      <p>ENTITY STATUS: <span id="entityStatus">UNCONFIRMED</span></p>
+      <p id="lastMessage">"There is nothing in the room."</p>
+    </section>
   </main>
 
-  <div id="jumpscare" class="jumpscare" hidden>
-    <div class="face">
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-      <div class="mouth"></div>
-    </div>
-
-    <h2>YOU SHOULDN'T HAVE ANSWERED.</h2>
-    <button id="returnBtn">RETURN TO SIGNAL</button>
-  </div>
-
-  <script src="script.js"></script>
+  <footer>
+    SIGNAL LOST // DO NOT RECONNECT // 03:17
+  </footer>
 </body>
 </html>
